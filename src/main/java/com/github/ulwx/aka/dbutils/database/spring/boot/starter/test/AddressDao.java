@@ -1,4 +1,4 @@
-package com.github.ulwx.aka.dbutils.database.spring.boot.test;
+package com.github.ulwx.aka.dbutils.database.spring.boot.starter.test;
 
 import com.github.ulwx.aka.dbutils.database.spring.MDataBaseTemplate;
 import com.github.ulwx.aka.dbutils.tool.MD;

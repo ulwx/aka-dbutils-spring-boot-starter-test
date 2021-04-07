@@ -1,4 +1,4 @@
-package com.github.ulwx.aka.dbutils.database.spring.boot.test;
+package com.github.ulwx.aka.dbutils.database.spring.boot.starter.test;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

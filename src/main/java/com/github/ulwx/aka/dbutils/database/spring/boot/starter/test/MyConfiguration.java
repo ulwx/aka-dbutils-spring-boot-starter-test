@@ -1,4 +1,4 @@
-package com.github.ulwx.aka.dbutils.database.spring.boot.test;
+package com.github.ulwx.aka.dbutils.database.spring.boot.starter.test;
 
 import com.github.ulwx.aka.dbutils.database.spring.AkaMpperScannerConfigurer;
 import com.github.ulwx.aka.dbutils.database.spring.MDataBaseFactory;
