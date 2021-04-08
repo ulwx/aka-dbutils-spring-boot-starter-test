@@ -60,9 +60,9 @@ public class MyConfiguration implements ApplicationContextAware {
     public static  AkaMpperScannerConfigurer akaMpperScannerConfigurer(){
         AkaMpperScannerConfigurer akaMpperScannerConfigurer=
                 new AkaMpperScannerConfigurer();
-        akaMpperScannerConfigurer.setBasePackage("com.github.ulwx.aka.dbutils.database.spring.boot.test");
+        akaMpperScannerConfigurer.setBasePackage(MyConfiguration.class.getPackage().getName());
         //如果不指定，默认使用"mDataBaseTemplate"名称
-        akaMpperScannerConfigurer.setMdDataBaseTemplateBeanName("mDataBaseTemplate");
+        //akaMpperScannerConfigurer.setMdDataBaseTemplateBeanName("mDataBaseTemplate");
         return akaMpperScannerConfigurer;
     }
     @Override
