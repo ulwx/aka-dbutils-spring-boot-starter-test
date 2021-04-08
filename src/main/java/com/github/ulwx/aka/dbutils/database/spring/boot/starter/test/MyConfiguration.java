@@ -39,30 +39,33 @@ public class MyConfiguration implements ApplicationContextAware {
     @Bean
     public DataSourceTransactionManager transactionManager() {
         DataSourceTransactionManager dt = new DataSourceTransactionManager();
-        dt.setDataSource(dataSource());
+        dt.setDataSource(dataSource());//①
         return dt;
     }
-    //这里不需要定义MDataBaseTemplate类型Bean，因为aka-dbutils-spring-boot-starter会自动配置
+    //配置MDataBaseTemplate类型Bean，如果不配置，aka-dbutils-spring-boot-starter会自动配置一个
     @Bean
     public MDataBaseFactory mDataBaseFactory() {
-        MDataBaseFactory mDataBaseFactory = new MDataBaseFactory(dataSource());
+        MDataBaseFactory mDataBaseFactory = new MDataBaseFactory(dataSource());//② 和①处的必须注入同一个连接池
         mDataBaseFactory.setTableColumRule(DbConst.TableNameRules.underline_to_camel);
         mDataBaseFactory.setTableNameRule(DbConst.TableColumRules.underline_to_camel);
         return mDataBaseFactory;
 
     }
     @Bean
+    //配置MDataBaseTemplate Bean用于数据库操作，如果不配置，aka-dbutils-spring-boot-starter会自动配置一个
     public MDataBaseTemplate mDataBaseTemplate() {
         MDataBaseFactory mDataBaseFactory=mDataBaseFactory();
         return new MDataBaseTemplate(mDataBaseFactory);
     }
     @Bean
+    //配置AkaMpperScannerConfigurer Bean用于用于扫描Mapper接口（继承自AkaMapper）从而生成代理Bean注册到Spring容器
+    //如果不配置,aka-dbutils-spring-boot-starter会自动配置一个
     public static  AkaMpperScannerConfigurer akaMpperScannerConfigurer(){
         AkaMpperScannerConfigurer akaMpperScannerConfigurer=
                 new AkaMpperScannerConfigurer();
         akaMpperScannerConfigurer.setBasePackage(MyConfiguration.class.getPackage().getName());
         //如果不指定，默认使用"mDataBaseTemplate"名称
-        //akaMpperScannerConfigurer.setMdDataBaseTemplateBeanName("mDataBaseTemplate");
+        akaMpperScannerConfigurer.setMdDataBaseTemplateBeanName("mDataBaseTemplate");
         return akaMpperScannerConfigurer;
     }
     @Override

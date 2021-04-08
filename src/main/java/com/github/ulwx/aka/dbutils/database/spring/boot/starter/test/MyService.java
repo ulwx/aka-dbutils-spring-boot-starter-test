@@ -1,5 +1,6 @@
 package com.github.ulwx.aka.dbutils.database.spring.boot.starter.test;
 
+import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,9 +29,9 @@ public class MyService {
             e.printStackTrace();
         }
        //MyService方法的内部调用会使用被调用方法上声明的事务失效，所以需要用下面方式调用
-       // ((MyService) AopContext.currentProxy()).updateMdbOther();
+       ((MyService) AopContext.currentProxy()).updateMdbOther();
         //MyService方法的内部调用会使用被调用方法上声明的事务失效，下面的内部调用还是在updateMdb()方法的事务里。
-       // updateMdbOther();
+        // updateMdbOther();
         int i=0;
 
     }
@@ -41,6 +42,8 @@ public class MyService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void testMapper(){
          mapper.updateMd();
-         mapper.fun();
+         mapper.update();
+         mapper.query();
     }
+
 }

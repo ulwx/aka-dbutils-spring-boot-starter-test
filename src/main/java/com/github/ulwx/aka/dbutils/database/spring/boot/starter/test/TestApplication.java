@@ -17,6 +17,7 @@ public class TestApplication {
 
         return args -> {
             myService.testMapper();
+             myService.updateMdb();
             System.out.println("ok!");
         };
     }

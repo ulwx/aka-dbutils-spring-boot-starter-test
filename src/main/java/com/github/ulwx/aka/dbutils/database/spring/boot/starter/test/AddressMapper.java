@@ -6,7 +6,13 @@ public abstract class AddressMapper extends AkaMapper {
 
     public abstract void updateMd();
 
-    public void fun(){
+    public void update(){
         this.updateMd();
+    }
+
+    public void query(){
+        Address address=new Address();
+        address.setAddressId(1);
+        this.getMdDataBase().queryOneBy(address);
     }
 }
