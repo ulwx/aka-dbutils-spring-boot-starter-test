@@ -58,13 +58,13 @@ public class MyConfiguration implements ApplicationContextAware {
         return new MDataBaseTemplate(mDataBaseFactory);
     }
     @Bean
-    //配置AkaMpperScannerConfigurer Bean用于用于扫描Mapper接口（继承自AkaMapper）从而生成代理Bean注册到Spring容器
+    //配置AkaMpperScannerConfigurer Bean用于用于扫描Mapper（继承自AkaMapper）从而生成代理Bean注册到Spring容器
     //如果不配置,aka-dbutils-spring-boot-starter会自动配置一个
     public static  AkaMpperScannerConfigurer akaMpperScannerConfigurer(){
         AkaMpperScannerConfigurer akaMpperScannerConfigurer=
                 new AkaMpperScannerConfigurer();
         akaMpperScannerConfigurer.setBasePackage(MyConfiguration.class.getPackage().getName());
-        //如果不指定，默认使用"mDataBaseTemplate"名称
+        //指定MDataBaseTemplate Bean的名称，如果不指定，默认使用"mDataBaseTemplate"名称
         akaMpperScannerConfigurer.setMdDataBaseTemplateBeanName("mDataBaseTemplate");
         return akaMpperScannerConfigurer;
     }

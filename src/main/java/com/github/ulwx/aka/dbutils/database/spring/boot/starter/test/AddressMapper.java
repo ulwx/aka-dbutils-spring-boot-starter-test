@@ -14,5 +14,6 @@ public abstract class AddressMapper extends AkaMapper {
         Address address=new Address();
         address.setAddressId(1);
         this.getMdDataBase().queryOneBy(address);
+        this.updateMd();
     }
 }
